@@ -2,6 +2,7 @@ import { WebSocket } from "ws";
 import { Game } from "./Game";
 import { INIT_GAME, MOVE } from "./Messages";
 
+
 export class GameManager {
   private games: Game[];
   private pendingUser: WebSocket | null;
@@ -25,7 +26,7 @@ export class GameManager {
   private addHandler(socket: WebSocket) {
     socket.on("message", (data) => {
       const message = JSON.parse(data.toString());
-
+      console.log(message)
       if (message.type === INIT_GAME) {
         if (this.pendingUser) {
           const game = new Game(this.pendingUser, socket);
@@ -42,7 +43,8 @@ export class GameManager {
         );
         
         if(game){
-            game.makeMove(socket , message.move)
+          console.log("message from gamemanger " ,message.payload)
+            game.makeMove(socket , message.payload)
         }
       }
     });

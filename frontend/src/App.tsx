@@ -5,7 +5,7 @@ import Game from "./screnes/Game";
 
 function App() {
   return (
-    <div className="h-screen w-screen bg-[#302E2B] text-white border border-red-600">
+    <div className="h-screen w-screen bg-[#302E2B] text-white">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/game" element={<Game />} />

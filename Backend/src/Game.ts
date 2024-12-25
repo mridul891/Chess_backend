@@ -40,16 +40,20 @@ export class Game {
     }
   ) {
     // Validation Here
+    console.log("reached")
 
     if (this.moveCount % 2 === 0 && socket !== this.player1) {
+      console.log("early reaturn 1")
       return;
     }
 
     if (this.moveCount % 2 === 1 && socket !== this.player2) {
+      console.log("early return 2")
       return;
     }
 
     try {
+      console.log(move)
       this.board.move(move);
     } catch (error) {
       return;
@@ -79,6 +83,7 @@ export class Game {
     // Formward the board to both the users
 
     if (this.moveCount % 2 === 0) {
+      console.log("next turn 2")
       this.player2.send(
         JSON.stringify({
           type: MOVE,
@@ -86,6 +91,7 @@ export class Game {
         })
       );
     } else {
+      console.log("next turn 1")
       this.player1.send(
         JSON.stringify({
           type: MOVE,
